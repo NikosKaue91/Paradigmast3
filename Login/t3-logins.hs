@@ -1,0 +1,3 @@
+--Trabalho de Lista de Logins: Programação funcional com Haskell
+--Nome: Nikollas Kauê Soares Gomes
+--Matrícula: 201020867
