@@ -51,9 +51,33 @@ encodeName name = concat (map (tradeWords) name)
 		
 -- 6. Escreva uma função isElem :: Int -> [Int] -> Bool que verifique se um dado elemento pertence a uma lista.
 
+isElem :: Int -> [Int] -> Bool
+isElem x y
+	|filter (== x) y == [] = False
+	|otherwise = True
+	
 -- 7. Escreva uma função recursiva que retorne o número de vogais em uma string.
 
+ex_7 :: String -> Int 
+ex_7 [] = 0
+ex_7 x = (y (head x)) + (ex_7 (tail x))
+	where y x
+		|x == 'a' = 1
+		|x == 'e' = 1
+		|x == 'i' = 1
+		|x == 'o' = 1
+		|x == 'u' = 1
+		|x == 'A' = 1
+		|x == 'E' = 1
+		|x == 'I' = 1
+		|x == 'O' = 1
+		|x == 'U' = 1
+		|otherwise = 0
+		
 -- 8. Escreva uma função não-recursiva que retorne o número de consoantes em uma string.
+
+ex_8 :: String -> Int  
+ex_8 x = length (filter (\ x -> (x /= 'a') && (x /= 'e') && (x /= 'i') && (x /= 'o') && (x /= 'u') && (x /= 'A') && (x /= 'E') && (x /= 'I') && (x /= 'O') && (x /= 'U') && (x /= ' ')) x)
 
 -- 9. Escreva uma função não-recursiva isInt :: String -> Bool que verifique se uma dada string só contém dígitos (0 a 9).
 
@@ -66,3 +90,5 @@ isInt x = if length(x)/=length(filter (\x->(x=='0')||(x=='1')||(x=='2')||(x=='3'
 -- fazendo operações aritméticas com seus dígitos (p.ex.: "356" = 3*100 + 5*10 + 6*1 = 356). 
 -- Considere que a string seja um número válido, isto é, só contenha dígitos de 0 a 9. 
 -- Dica: se não souber por onde começar, estude o exemplo de validação de CPF visto em aula.
+
+--não feita
