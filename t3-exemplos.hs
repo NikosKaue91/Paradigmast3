@@ -17,6 +17,8 @@ ex_2_an x y = any (== x) y
 ex_1_al :: Int -> [Int] -> Bool
 ex_1_al x y = any (>x) y
 
+ex_2_al :: Int -> [Int] -> Bool
+ex_2_al x y = all(x==)y
 
 -- 2. Em Haskell, o símbolo '$' pode ser usado para escrever códigos ainda mais curtos. Descubra seu significado e apresente 2 exemplos de uso.
 
@@ -33,12 +35,10 @@ e_2_2 x y
 -- 3. Haskell permite composição de funções, exatamente como em matemática.
 -- Descubra como fazer isso e apresente 2 exemplos de aplicação de funções compostas.
 
+--Solução 1: map (negate . sum . tail) [[1..5],[3..6],[1..7]] 
+--Solução 2:
 ex_3 :: Integer  
-ex_3 =   
-    let ex_3 = filter odd $ map (^2) [1..]  
-        belowLimit = takeWhile (<10000) ex_3  
-    in  sum belowLimit  
-	
+ex_3 = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]  
 	
 	
 
