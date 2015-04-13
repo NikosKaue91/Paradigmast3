@@ -14,6 +14,8 @@ ex_2_an x y = any (== x) y
 
 --all
 
+ex_1_al :: Int -> [Int] -> Bool
+ex_1_al x y = any (>x) y
 
 
 -- 2. Em Haskell, o símbolo '$' pode ser usado para escrever códigos ainda mais curtos. Descubra seu significado e apresente 2 exemplos de uso.
@@ -36,3 +38,8 @@ ex_3 =
     let ex_3 = filter odd $ map (^2) [1..]  
         belowLimit = takeWhile (<10000) ex_3  
     in  sum belowLimit  
+	
+	
+	
+
+	
