@@ -1,4 +1,6 @@
-
+% Trabalho 4: Desvendando um mistério em Prolog
+% Nome: Nikollas Kaue Soares Gomes
+% Santa Maria, 22 de abril de 2015
 
 % RELACIONAMENTOS ENTRE OS ENVOLVIDOS
 
@@ -27,19 +29,31 @@ rico(henrique).
 insano(adriano).
 insano(maria).
 
-% MOTIVOS PARA COMETER O CRIME 
+% VÍTIMA DA HISTÓRIA.
 
-motivo(ciumes).
-motivo(insanidade).
-motivo(dinheiro).
+vitima(anita).
+
+% CIUMES. condição para haver ciumes: se em dois casais, um dos membros do casal for em comum com relacionamento antigo de anita, a vitima.
+
+ciumes(Z) :- relacionamento(X, anita), relacionamento(X, Z).
+
+% MOTIVOS DO CRIME - nesta parte coloquei condições dos suspeitos de cometerem o crime, no caso há 3: ciumes, no qual verifiquei os relaccionamentos e comum de todos com anita; 
+% pobre, no qual os individus que são pobres, a pprincipio são suspeitos nesta categoria, e insanidade!
+
+motivo(X) :- ciumes(X); pobre(X); insano(X).
 
 % MODOS DE ACESSO AO APARTAMENTO
 
-acesso(roubou_a_arma).
-acesso(roubou_a_chave).
-acesso(estava_no_apartamento).
+roubo_arma(X) :- fatos(X,porto_alegre,quinta) ; fatos(X,santa_maria,quarta) ; fatos(X,apartamento,quarta) ; fatos(X,apartamento,quinta).
+roubo_chave(X) :- fatos(X,santa_maria,segunda) ; fatos(X,porto_alegre,terca).
+estava_apartamento(X) :- fatos(X,apartamento,quinta) ; fatos(X,apartamento,sexta).
 
-% FERRAMENTAS USADAS NO CRIME
+% ACESSO. condições para ter havido acesso ao apartamento no dia do crime, alem das possiveis armas que foam usadas. 
+% As datas dos roubos das chaves e armas acusam o suspeito.
+
+acesso(X) :- roubo_arma(X), roubo_chave(X), estava_apartamento(X).
+
+% 	FERRAMENTAS USADAS NO CRIME
 
 ferramenta(bastao_baseball).
 ferramenta(martelo).
@@ -94,8 +108,9 @@ fatos(pedro,porto_alegre,quarta).
 fatos(pedro,santa_maria,quinta).
 fatos(pedro,apartamento,sexta).
 
-roubo_chave(X) :- fatos(X,santa_maria,quarta) ; fatos(X,porto_alegre,terca).
-roubo_ferramenta(X) :- fatos(X,porto_alegre,quinta) ; fatos(X,apartamento,quarta) ; fatos(X,apartamento,quinta).
 
-suspeito(X) :- roubo_chave(X) , roubo_ferramenta(X).
+% função final para achar  assassino, ouco diferente da proposta no enunciado!
+
+assassino(X) :- acesso(X) , motivo(X).
+
 
